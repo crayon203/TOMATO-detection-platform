@@ -1,0 +1,1366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1100</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TOMATO — 番茄检测标注训练推理平台</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabAnnot">
+       <attribute name="title">
+        <string>标注工具</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QHBoxLayout" name="categoryLayout">
+          <item>
+           <widget class="QLabel" name="lblCategory">
+            <property name="text">
+             <string>当前类别：</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cbCategory"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnAddCategory">
+            <property name="text">
+             <string>新建类别</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnDelCategory">
+            <property name="text">
+             <string>删除类别</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="catSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnOpenImage">
+            <property name="text">
+             <string>打开图片</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnSaveYolo">
+            <property name="text">
+             <string>保存YOLO标注</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnClearAnnot">
+            <property name="text">
+             <string>清除标注</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnDeleteBox">
+            <property name="text">
+             <string>删除选中框</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="viewSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <!-- 平移按钮组 -->
+          <item>
+           <widget class="QPushButton" name="btnPanLeft">
+            <property name="text">
+             <string>◀</string>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>32</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>左移 (方向键 ←)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnPanUp">
+            <property name="text">
+             <string>▲</string>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>32</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>上移 (方向键 ↑)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnPanDown">
+            <property name="text">
+             <string>▼</string>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>32</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>下移 (方向键 ↓)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnPanRight">
+            <property name="text">
+             <string>▶</string>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>32</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>右移 (方向键 →)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="panZoomSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>8</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <!-- 缩放按钮组 -->
+          <item>
+           <widget class="QPushButton" name="btnZoomOut">
+            <property name="text">
+             <string>−</string>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>32</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>缩小 (快捷键: -)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnZoomIn">
+            <property name="text">
+             <string>+</string>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>32</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>放大 (快捷键: +)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="zoomRotSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>8</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <!-- 旋转控件组 -->
+          <item>
+           <widget class="QLabel" name="lblRotation">
+            <property name="text">
+             <string>旋转:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDoubleSpinBox" name="edRotation">
+            <property name="minimumSize">
+             <size>
+              <width>70</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="decimals">
+             <number>1</number>
+            </property>
+            <property name="minimum">
+             <double>0.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>359.900000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>5.000000000000000</double>
+            </property>
+            <property name="value">
+             <double>0.000000000000000</double>
+            </property>
+            <property name="suffix">
+             <string>°</string>
+            </property>
+            <property name="toolTip">
+             <string>任意旋转角度 (0-360°)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnRotateLeft">
+            <property name="text">
+             <string>↺</string>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>32</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>左旋 15° (快捷键: [)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnRotateRight">
+            <property name="text">
+             <string>↻</string>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>32</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>右旋 15° (快捷键: ])</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="rotResetSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>4</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnResetView">
+            <property name="text">
+             <string>重置</string>
+            </property>
+            <property name="toolTip">
+             <string>重置缩放/旋转/平移 (快捷键: 0)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnLoadDataset">
+            <property name="text">
+             <string>加载数据集</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="datasetNavLayout">
+          <item>
+           <widget class="QPushButton" name="btnPrevImage">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>90</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>◀ 上一张</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblDatasetNav">
+            <property name="text">
+             <string>未加载数据集</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnNextImage">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>90</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>下一张 ▶</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnSaveAllLabels">
+            <property name="toolTip">
+             <string>批量保存所有已标注图片的YOLO标签</string>
+            </property>
+            <property name="text">
+             <string>保存全部标注</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="AnnotWidget" name="widgetAnnot" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>400</width>
+            <height>300</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableAnnotations">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="columnCount">
+           <number>6</number>
+          </property>
+          <column>
+           <property name="text">
+            <string>序号</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>类别</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>X</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Y</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>宽度</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>高度</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabTrain">
+       <attribute name="title">
+        <string>模型训练</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>数据集路径：</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="edDataDir"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnSelectDataset">
+            <property name="text">
+             <string>选择文件夹</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="splitLayout">
+          <item>
+           <widget class="QLabel" name="lblSplit">
+            <property name="text">
+             <string>训练/验证集比例：</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="sliderSplit">
+            <property name="minimum">
+             <number>50</number>
+            </property>
+            <property name="maximum">
+             <number>95</number>
+            </property>
+            <property name="value">
+             <number>80</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="spinSplit">
+            <property name="suffix">
+             <string>% 训练集</string>
+            </property>
+            <property name="minimum">
+             <number>50</number>
+            </property>
+            <property name="maximum">
+             <number>95</number>
+            </property>
+            <property name="value">
+             <number>80</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="trainParamsGrid">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>训练轮次:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="edEpoch">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>500</number>
+            </property>
+            <property name="value">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>批次大小:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QSpinBox" name="edBatch">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>128</number>
+            </property>
+            <property name="value">
+             <number>2</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>图像大小:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QSpinBox" name="edImgsz">
+            <property name="minimum">
+             <number>320</number>
+            </property>
+            <property name="maximum">
+             <number>1280</number>
+            </property>
+            <property name="singleStep">
+             <number>32</number>
+            </property>
+            <property name="value">
+             <number>640</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lblLR">
+            <property name="text">
+             <string>学习率:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QDoubleSpinBox" name="edLR">
+            <property name="decimals">
+             <number>5</number>
+            </property>
+            <property name="minimum">
+             <double>0.000010000000000</double>
+            </property>
+            <property name="maximum">
+             <double>0.100000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.000100000000000</double>
+            </property>
+            <property name="value">
+             <double>0.001000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLabel" name="lblOptimizer">
+            <property name="text">
+             <string>优化器:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QComboBox" name="cbOptimizer">
+            <item>
+             <property name="text">
+              <string>AdamW</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>SGD</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Adam</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="QLabel" name="lblWD">
+            <property name="text">
+             <string>权重衰减:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="5">
+           <widget class="QDoubleSpinBox" name="edWD">
+            <property name="decimals">
+             <number>5</number>
+            </property>
+            <property name="minimum">
+             <double>0.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>1.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.000100000000000</double>
+            </property>
+            <property name="value">
+             <double>0.000500000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="6">
+           <widget class="QLabel" name="lblDevice">
+            <property name="text">
+             <string>设备:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="7">
+           <widget class="QComboBox" name="cbDevice">
+            <item>
+             <property name="text">
+              <string>cpu</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>gpu</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QPushButton" name="btnStartTrain">
+            <property name="text">
+             <string>开始训练</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnStopTrain">
+            <property name="text">
+             <string>停止训练</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>训练实时日志：</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="teTrainLog">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="gbMetrics">
+          <property name="title">
+           <string>训练结果指标</string>
+          </property>
+          <layout class="QGridLayout" name="metricsGrid">
+           <item row="0" column="0">
+            <widget class="QLabel" name="lblMAP">
+             <property name="text">
+              <string>mAP50: --</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="lblMAP95">
+             <property name="text">
+              <string>mAP50-95: --</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="lblPrecision">
+             <property name="text">
+              <string>Precision: --</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLabel" name="lblRecall">
+             <property name="text">
+              <string>Recall: --</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="lblModelPath">
+             <property name="text">
+              <string>模型路径: --</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="lblTrainTime">
+             <property name="text">
+              <string>训练耗时: --</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" colspan="2">
+            <widget class="QPushButton" name="btnSaveTrainResult">
+             <property name="text">
+              <string>保存训练结果到数据库</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabQuant">
+       <attribute name="title">
+        <string>模型量化</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>模型路径：</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="edModelPath"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnSelectModel">
+            <property name="text">
+             <string>选择模型</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>量化类型：</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cbQuantType">
+            <item>
+             <property name="text">
+              <string>fp16</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>int8</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblQuantScheme">
+            <property name="text">
+             <string>量化方案：</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cbQuantScheme">
+            <item>
+             <property name="text">
+              <string>PTQ（训练后量化）</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>QAT（感知量化）</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <!-- 量化途径选择 -->
+        <item>
+         <layout class="QHBoxLayout" name="quantPathwayLayout">
+          <item>
+           <widget class="QLabel" name="lblQuantPathway">
+            <property name="text"><string>量化途径：</string></property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cbQuantPathway">
+            <item><property name="text"><string>ONNX Runtime 量化</string></property></item>
+            <item><property name="text"><string>TensorRT 量化</string></property></item>
+            <item><property name="text"><string>PyTorch 自带量化</string></property></item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QPushButton" name="btnStartQuant">
+            <property name="text">
+             <string>开始量化</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnStopQuant">
+            <property name="text">
+             <string>停止量化</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>量化实时日志：</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="teQuantLog">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabInfer">
+       <attribute name="title">
+        <string>模型推理</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <!-- 推理引擎选择 -->
+        <item>
+         <layout class="QHBoxLayout" name="inferEngineLayout">
+          <item>
+           <widget class="QLabel" name="lblInferEngine">
+            <property name="text"><string>推理引擎：</string></property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cbInferEngine">
+            <item><property name="text"><string>🐍 Python 加载训练原始模型 (.pt)</string></property></item>
+            <item><property name="text"><string>⚡ C++ 加载量化模型 (.onnx)</string></property></item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <!-- 模型选择 -->
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_8">
+          <item>
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>模型路径：</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="edQuantModelPath"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnSelectQuantModel">
+            <property name="text">
+             <string>选择模型</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="inferParamLayout">
+          <item>
+           <widget class="QLabel" name="lblConf">
+            <property name="text">
+             <string>置信度阈值:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDoubleSpinBox" name="edConfThresh">
+            <property name="toolTip">
+             <string>调低 = 检出更多目标 + 更多误检；调高 = 只保留高置信度检测</string>
+            </property>
+            <property name="minimum">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>1.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.050000000000000</double>
+            </property>
+            <property name="value">
+             <double>0.150000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblIoU">
+            <property name="text">
+             <string>NMS去重阈值 (越高去重越少):</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDoubleSpinBox" name="edIoUThresh">
+            <property name="toolTip">
+             <string>调高 = 允许检测框更多重叠，避免多目标漏检</string>
+            </property>
+            <property name="minimum">
+             <double>0.100000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>1.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.050000000000000</double>
+            </property>
+            <property name="value">
+             <double>0.600000000000000</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <widget class="QPushButton" name="btnOpenInferImage">
+            <property name="text">
+             <string>打开推理图片</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnRunInfer">
+            <property name="text">
+             <string>开始推理</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnBatchInfer">
+            <property name="text">
+             <string>批量推理</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnSaveInferResult">
+            <property name="text">
+             <string>保存结果入库</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="AnnotWidget" name="widgetInfer" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>400</width>
+            <height>300</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableInferResults">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>130</height>
+           </size>
+          </property>
+          <property name="columnCount">
+           <number>6</number>
+          </property>
+          <column>
+           <property name="text">
+            <string>序号</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>类别</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>X</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Y</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>宽度</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>高度</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabHistory">
+       <attribute name="title">
+        <string>历史记录</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="historyLayout">
+        <item>
+         <widget class="QTabWidget" name="historyTabWidget">
+          <widget class="QWidget" name="historyTrainTab">
+           <attribute name="title">
+            <string>训练历史</string>
+           </attribute>
+           <layout class="QVBoxLayout">
+            <item>
+             <widget class="QTableWidget" name="tableTrainHistory">
+              <property name="columnCount">
+               <number>9</number>
+              </property>
+              <column>
+               <property name="text">
+                <string>ID</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>时间</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>数据集</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>mAP50</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>mAP50-95</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Precision</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Recall</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>模型路径</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>耗时</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="historyInferTab">
+           <attribute name="title">
+            <string>推理历史</string>
+           </attribute>
+           <layout class="QVBoxLayout">
+            <item>
+             <widget class="QTableWidget" name="tableInferHistory">
+              <property name="columnCount">
+               <number>6</number>
+              </property>
+              <column>
+               <property name="text">
+                <string>ID</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>时间</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>模型</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>图片</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>检测数</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>置信度均值</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>文件(&amp;F)</string>
+    </property>
+    <addaction name="actionOpenImage"/>
+    <addaction name="actionSave"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>编辑(&amp;E)</string>
+    </property>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>视图(&amp;V)</string>
+    </property>
+    <addaction name="actionZoomIn"/>
+    <addaction name="actionZoomOut"/>
+    <addaction name="actionZoomFit"/>
+    <addaction name="separator"/>
+    <addaction name="actionRotateLeft"/>
+    <addaction name="actionRotateRight"/>
+    <addaction name="actionResetView"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>帮助(&amp;H)</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="toolTip">
+    <string/>
+   </property>
+  </widget>
+  <action name="actionOpenImage">
+   <property name="text">
+    <string>打开图片</string>
+   </property>
+   <property name="toolTip">
+    <string>打开图片进行标注</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>保存标注</string>
+   </property>
+   <property name="toolTip">
+    <string>保存YOLO格式标注</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="text">
+    <string>撤销</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="text">
+    <string>重做</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y</string>
+   </property>
+  </action>
+  <action name="actionZoomIn">
+   <property name="text">
+    <string>放大</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="actionZoomOut">
+   <property name="text">
+    <string>缩小</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionZoomFit">
+   <property name="text">
+    <string>适应窗口</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>退出</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+F4</string>
+   </property>
+  </action>
+  <action name="actionRotateLeft">
+   <property name="text">
+    <string>左旋 15°</string>
+   </property>
+   <property name="toolTip">
+    <string>逆时针旋转15度 (快捷键: [)</string>
+   </property>
+  </action>
+  <action name="actionRotateRight">
+   <property name="text">
+    <string>右旋 15°</string>
+   </property>
+   <property name="toolTip">
+    <string>顺时针旋转15度 (快捷键: ])</string>
+   </property>
+  </action>
+  <action name="actionResetView">
+   <property name="text">
+    <string>重置视图</string>
+   </property>
+   <property name="toolTip">
+    <string>重置缩放/旋转/平移 (快捷键: 0)</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>关于</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>AnnotWidget</class>
+   <extends>QWidget</extends>
+   <header>AnnotWidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

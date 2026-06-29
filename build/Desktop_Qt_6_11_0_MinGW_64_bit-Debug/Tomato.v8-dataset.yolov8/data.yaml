@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 3
+names: ['Masak', 'Mengkal', 'Muda']
+
+roboflow:
+  workspace: thomas-p5z9n
+  project: tomato-xcvft
+  version: 8
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/thomas-p5z9n/tomato-xcvft/dataset/8

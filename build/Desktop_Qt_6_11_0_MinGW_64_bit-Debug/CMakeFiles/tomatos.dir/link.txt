@@ -1,0 +1,3 @@
+D:\Learn\QtInstaller\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f CMakeFiles\tomatos.dir/objects.a
+D:\Learn\QtInstaller\Qt\Tools\mingw1310_64\bin\ar.exe qc CMakeFiles\tomatos.dir/objects.a @CMakeFiles\tomatos.dir\objects1.rsp
+D:\Learn\QtInstaller\Qt\Tools\mingw1310_64\bin\g++.exe -g -mwindows -Wl,--whole-archive CMakeFiles\tomatos.dir/objects.a -Wl,--no-whole-archive -o tomatos.exe -Wl,--out-implib,libtomatos.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\tomatos.dir\linkLibs.rsp
